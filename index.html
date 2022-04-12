@@ -97,6 +97,35 @@
                     <th scope="col" id="emailchart">Email</th>
                     <th scope="col">Address</th>
                 </tr>
+
+            <h2>Click for User Names</h2>
+            <button
+            onclick="displayAllNames()"
+            type="button"
+            class="btn btn-dark"
+        >
+            Users
+        </button>
+        <div class="row">
+            <div class="col-4">
+                <ol></ol>
+            </div>
+            <div class="col-8">
+                <ul class="address-list"></ul>
+            </div>
+        </div>
+
+
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d36722.36197023674!2d23.833703151049804!3d54.8827769109926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slt!4v1649694888914!5m2!1sen!2slt"
+        width="400"
+        height="300"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+
     <!--Ex1) Get and display, using async / await, the users from: https://jsonplaceholder.typicode.com/users  -->
     <script>
       const waitAsync = async () => {
@@ -174,6 +203,25 @@
             }
           }
         };
+
+      //  <!-- Ex3) Create a function that, from the list of users, extracts only the names -->
+      
+        const displayAllNames = async () => {
+    try {
+        const userList = document.querySelector(`ol`);
+        if (userList.children.length > 0) return;
+        const usersData = await fetch(
+            "https://jsonplaceholder.typicode.com/users"
+        );
+        const response = await usersData.json();
+        const names = response.map((elem) => elem.name);
+        names.forEach((name) => {
+            userList.innerHTML += `<li>${name}</li>`;
+        });
+    } catch (err) {
+        console.error(Error);
+    }
+};
     </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
