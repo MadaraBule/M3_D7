@@ -96,6 +96,7 @@
         <div class="col-12">
           <table class="table">
             <thead>
+              <button type="button" onclick="sorting" class="btn btn-dark">Sort</button>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col" id="nameChart">Name</th>
@@ -154,7 +155,6 @@
           cell4.innerHTML = user.email;
           cell5.innerHTML = user.address.street + ", " + user.address.suite;
         }); 
-     appendChild(row);
       };
       waitAsync();
 
@@ -228,6 +228,29 @@
         console.error(Error);
     }
 };
+// Ex5) Add a button that sorts the list by name ascending / descending (ONE button)
+//table td sort
+//  function sorting() {
+//   table = document.getElementById("table");
+//   switching = true;
+//   while (switching) {
+//     switching = false;
+//     rows = table.rows;
+//     for (i = 1; i < (rows.length - 1); i++) {
+//       shouldSwitch = false;
+//       x = rows[i].getElementsByTagName("td")[0];
+//       y = rows[i + 1].getElementsByTagName("td")[0];
+//       if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+//         shouldSwitch = true;
+//         break;
+//       }
+//     }
+//     if (shouldSwitch) {
+//       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+//       switching = true;
+//     }
+//   }
+// }
     </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
