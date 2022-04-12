@@ -44,6 +44,49 @@
   </head>
 
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Users</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Sort by
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Name</a>
+              <a class="dropdown-item" href="#">Username</a>
+              <a class="dropdown-item" href="#">Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <input type="text" class="form-control" placeholder="Filter" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                </tr>
     <!--Ex1) Get and display, using async / await, the users from: https://jsonplaceholder.typicode.com/users  -->
     <script>
       const waitAsync = async () => {
@@ -51,8 +94,24 @@
           "https://jsonplaceholder.typicode.com/users"
         );
         const data = await response.json();
-        return data;
+        //put the data in the table
+        data.forEach((user) => {
+          const table = document.querySelector("table");
+          const row = table.insertRow();
+          const cell1 = row.insertCell();
+          const cell2 = row.insertCell();
+          const cell3 = row.insertCell();
+          const cell4 = row.insertCell();
+          const cell5 = row.insertCell();
+          cell1.innerHTML = user.id;
+          cell2.innerHTML = user.name;
+          cell3.innerHTML = user.username;
+          cell4.innerHTML = user.email;
+          cell5.innerHTML = user.address.street + ", " + user.address.suite;
+        }); 
+     appendChild(row);
       };
+      waitAsync();
       //   fetch("https://jsonplaceholder.typicode.com/users")
       //     .then((response) => response.json())
       //     .then((data) => {
